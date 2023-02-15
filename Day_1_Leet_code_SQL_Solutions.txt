@@ -1,0 +1,22 @@
+solutions : 
+
+DAY-1 
+
+Question 1 - 595. Big Countries
+
+select name, population,area from World 
+where area>=3000000 or population>=25000000
+
+Question 2 - 1757. Recyclable and Low Fat Products
+
+select product_id from Products where low_fats='Y' and recyclable='Y'
+
+Question 3 - 584. Find Customer Referee
+
+select name from Customer where id in (select id from Customer where referee_id<>2 or referee_id IS NULL)
+
+Question 4 - 183. Customers Who Never Order
+
+select c1.name as Customers from Customers c1 where id not in (select c.id from Customers c
+inner join Orders o
+on o.customerId=c.id)
