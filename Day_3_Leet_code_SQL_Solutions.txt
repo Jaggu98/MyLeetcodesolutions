@@ -1,0 +1,26 @@
+solutions : 
+
+DAY-3 
+
+
+Question 1 - 1667. Fix Names in a Table
+
+select user_id, 
+CONCAT(UPPER(SUBSTRING(name,1,1)),LOWER(SUBSTRING(name,2,100))) as name 
+from Users order by user_id; 
+
+Question 2 - 1484. Group Sold Products By The Date
+
+select sell_date
+	, count(distinct product) num_sold
+	, group_concat(distinct product order by product asc separator ',') products
+from activities
+group by sell_date
+order by sell_date
+
+Question 3 -  1527. Patients With a Condition
+
+
+select patient_id,patient_name,conditions from Patients where
+conditions like '% DIAB1%' or
+conditions like 'DIAB1%'
