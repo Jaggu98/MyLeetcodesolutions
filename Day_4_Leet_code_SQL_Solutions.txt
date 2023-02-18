@@ -1,0 +1,84 @@
+
+DAY-4 Union/Union all / group by/order by
+
+Question 1 - 1965. Employees With Missing Information
+
+https://leetcode.com/problems/employees-with-missing-information
+
+solution : 
+
+select employee_id from (
+
+select employee_id,count(employee_id) as count1 from (
+(select employee_id from Employees) union all (select employee_id from Salaries)) as employee_id
+group by employee_id
+order by employee_id
+
+) as employee
+
+where count1=1
+
+
+
+Question 2 - 1795. Rearrange Products Table
+
+https://leetcode.com/problems/rearrange-products-table
+
+solution : 
+
+SELECT product_id, 'store1' AS store, store1 as price FROM products WHERE store1 IS NOT NULL
+UNION 
+SELECT product_id, 'store2' AS store, store2 as price FROM products WHERE store2 IS NOT NULL
+UNION 
+SELECT product_id, 'store3' AS store, store3 as price From products WHERE store3 IS NOT NULL
+ORDER BY 1,2 ASC;
+let us understand it in parts
+
+SELECT product_id, 'store1' AS store, store1 as price FROM products WHERE store1 IS NOT NULL
+select 'store1' as store => does nothing but add a column named store in which you can add any value(here 'store1') manually,
+now we select store1 as price where store1 is not null => this statement gives you the values present only in column store1 naming it price.
+Now after this we use union for adding the entries for other stores as well in the same pattern and after that order it by product_id.
+
+I would recommend running only first line and see the output and then run the whole code without the last line for a better understanding.
+
+
+
+
+Question 3 - 608. Tree Node
+
+https://leetcode.com/problems/tree-node/
+
+solution : 
+
+select id, 
+(case 
+when p_id is null then 'Root'
+when id in (select p_id from Tree) then 'Inner'
+else 'Leaf'
+end )
+as type
+from Tree 
+order by id;
+
+
+Question 4 - 176. Second Highest Salary
+
+
+select max(salary) as SecondHighestSalary
+from Employee where salary not in (select max(salary) from Employee);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
