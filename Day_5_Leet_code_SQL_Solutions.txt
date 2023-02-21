@@ -1,0 +1,48 @@
+DAY-5 Union and Union ALL 
+
+Question 1 - 175. Combine Two Tables
+
+https://leetcode.com/problems/combine-two-tables/description/
+
+
+SOLUTION : 
+
+select firstName,lastName,city,state 
+FROM Person 
+LEFT JOIN Address
+on 
+Person.personId=Address.personId;
+
+
+
+Question 2 - 1581. Customer Who Visited but Did Not Make Any Transactions
+
+https://leetcode.com/problems/customer-who-visited-but-did-not-make-any-transactions
+
+
+SOLUTION :
+
+select v.customer_id, count(v.visit_id) as count_no_trans
+from Visits v
+left join 
+Transactions t 
+on t.visit_id=v.visit_id
+where t.visit_id is null
+group by v.customer_id
+
+
+
+Question 3 - 1148. Article Views I
+
+https://leetcode.com/problems/article-views-i/
+
+
+SOLUTION : 
+
+select distinct author_id as id from Views 
+where author_id=viewer_id
+group by author_id
+order by author_id asc;
+
+
+
