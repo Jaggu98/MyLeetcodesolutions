@@ -1,0 +1,25 @@
+DAY-6 Union and Union ALL 
+
+Question 1 - 197. Rising Temperature
+
+https://leetcode.com/problems/rising-temperature
+
+SOLUTION : 
+
+
+select w1.id from Weather w1, Weather w2
+where  w1.temperature>w2.temperature and
+w1.recordDate = DATE_ADD(w2.recordDate,INTERVAL 1 DAY);
+
+
+Question 2 - 607. Sales Person
+
+https://leetcode.com/problems/sales-person
+
+select name from SalesPerson where sales_id not in (
+select sales_id from Orders where com_id in 
+(select com_id from company where name='RED')
+);
+
+
+
